@@ -1,5 +1,6 @@
 import requests
 import os
+from bs4 import BeautifulSoup
 import random
 import string
 import json
@@ -7,14 +8,14 @@ import json
 
 chars = string.ascii_letters + string.digits + '!@#$%^&*()'
 random.seed = (os.urandom(1024))
-
 url = 'http://localhost:8000/signin/'
+
 
 names = json.loads(open('names.json').read())
 
 isTrue = True
 
-while(isTrue):
+while isTrue:
     for name in names:
         name_extra = ''.join(random.choice(string.digits))
 
@@ -25,10 +26,10 @@ while(isTrue):
 
         try:
             requests.post(url, allow_redirects=False, data=json.dumps(payload))
-            print 'sending username %s and password %s' % (user, passw)
+            print ('Sending username %s and password %s' % (user, passw))
 
         except:
-            print 'He locked you out'
+            print ('He locked you out')
             isTrue = False
             break
 
