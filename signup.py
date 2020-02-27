@@ -19,8 +19,10 @@ while isTrue:
     for name in names:
         name_extra = ''.join(random.choice(string.digits))
 
-        phnumber_start = '92783'
-        phnumber_extra = ''.join(["{}".format(randint(0,9)) for num in range(0, 5)])
+        usr_name = name + name_extra
+
+        phnumber_start = '927'
+        phnumber_extra = ''.join(["{}".format(randint(0,9)) for num in range(0, 7)])
 
         email = name.lower() + name_extra + '@yahoo.com'
         passw = ''.join(random.choice(chars) for i in range(10))
@@ -29,16 +31,16 @@ while isTrue:
 
         payload = {
             'email': email,
-            'user_name': name_extra,
+            'user_name': usr_name,
             'first_name': name,
             'last_name': name,
             'password': passw,
             'confirmation': passw,
-            'phone_country_code': '63',
+            'phone_country_code': '+63',
             'phone_number': phnumber,
             'salary_expectation': 40000,
             'preferred_currency': 'PHP',
-            'position': 5,
+            'positions': 5,
             'freelance': 'false',
             'focuses': 8,
             'sub_specialties': 10,
@@ -48,12 +50,9 @@ while isTrue:
         }
 
         try:
-            print(type(phnumber) is str)
-            response = requests.post(url, allow_redirects=False, data=json.dumps(payload))
-            print(response)
+            requests.post(url, allow_redirects=False, data=payload)
             print('Sending')
         except:
             print ('He locked you out')
             isTrue = False
             break
-
