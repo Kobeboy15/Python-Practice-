@@ -1,5 +1,6 @@
 import requests
 import os
+import sys
 import random
 from random import randint
 import string
@@ -55,4 +56,5 @@ while isTrue:
         except:
             print ('He locked you out')
             isTrue = False
+            sys.exit()
             break
